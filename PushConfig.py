@@ -20,6 +20,6 @@ for host in devicelist:
     device['ip'] = host.strip('\n')
     net_connect = ConnectHandler(**device)
     net_connect.enable() 	#Passes the enable secret and drops you into conf t
-    config_cmds = ['int fa2/0/1', 'descr VLAN 102']  
+    config_cmds = ['aaa authorization exec default group tacacs+ if-authenticated', 'do wr']  
     output = net_connect.send_config_set(config_cmds)
     print(output)
